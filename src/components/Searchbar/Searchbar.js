@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import { toast } from 'react-toastify';
+import { warnToast } from '../../services/notify';
 
-// import { LabelWrap,FormWrap, ButtonWrap } from './ContactForm.styled';
+import { 
+    Header,
+    SearchForm,
+    SearchFormButton,
+    SearchFormButtonLabel,
+    SearchFormInput
+ } from './Searchbar.styled';
+
 
 
 class Searchbar extends Component {
+
     state = {
         query: '',
       }
@@ -13,32 +21,25 @@ class Searchbar extends Component {
     handleQuery = (event) => {
         this.setState({query: event.currentTarget.value.toLowerCase() });
     }
+
     handleSubmit = (event) => {
         event.preventDefault();
         if(this.state.query.trim() === ''){
-            toast.warn('enter normal', {
-                theme: "dark",
-                position: "top-center",
-                autoClose: 1500,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-            });
+            warnToast("Go there, I don\’t know where, bring that, I don\’t know what. Be polite, type something!");     
             return;
         }
         this.props.onSubmit(this.state.query);
         this.setState({query:''});
     }
+
     render () {
         return (      
-            <header class="searchbar">
-                <form  onSubmit={this.handleSubmit}>
-                    <button  type="submit" class="button">
-                        <span class="button-label">Search</span>
-                    </button>
-                    <input
-                        class="input"
+            <Header>
+                <SearchForm onSubmit={this.handleSubmit}>
+                    <SearchFormButton  type="submit">
+                        <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+                    </SearchFormButton>
+                    <SearchFormInput
                         type="text"
                         autoComplete="off"
                         autoFocus
@@ -46,11 +47,10 @@ class Searchbar extends Component {
                         value={this.state.query}
                         onChange={this.handleQuery}
                     />
-                </form>
-            </header>
+                </SearchForm>
+            </Header>
         )
     }
-
 }
 
 Searchbar.propTypes = {
