@@ -25,7 +25,7 @@ class Searchbar extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         if(this.state.query.trim() === ''){
-            warnToast("Go there, I don\’t know where, bring that, I don\’t know what. Be polite, type something!");     
+            warnToast("Go there, I don’t know where, bring that, I don’t know what. Be polite, type something!");     
             return;
         }
         this.props.onSubmit(this.state.query);

@@ -7,8 +7,8 @@ const ImageGalleryItem = ({ images , onImageClick } ) => {
     return (
         images.map(({id, webformatURL, largeImageURL, tags }) => {
             return (
-                <GalleryItem key = { id } id = { id } name = { largeImageURL }>
-                    <GalleryItemImage src = { webformatURL } alt = { tags } data-source = { largeImageURL } onClick = { onImageClick } />
+                <GalleryItem key = { id } id = { id }>
+                    <GalleryItemImage src = { webformatURL } alt = { tags } onClick = { () => onImageClick(largeImageURL, tags) } />
                 </GalleryItem>
             )
         })

@@ -22,8 +22,8 @@ class App extends Component {
   toggleModal = ( )=> {
     this.setState({ showModal: !this.state.showModal })
   }
-  onImageClick = (event) => {
-    this.setState({modalImage:  {url: event.currentTarget.dataset.source, alt: event.currentTarget.alt}});
+  onImageClick = (largeImageURL, tags) => {
+    this.setState({modalImage:  {url: largeImageURL, alt: tags}});
     this.toggleModal();
   }
 
